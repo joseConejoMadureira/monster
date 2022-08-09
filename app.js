@@ -17,6 +17,7 @@ new Vue({
             this.running = true;
             this.playerLife = 100;
             this.monsterLife = 100;
+            this.log= []
         },
         attack(especial) {
             this.hurt('monsterLife', 7, 12, especial, 'Jogador', 'monstro', 'player')
@@ -37,11 +38,12 @@ new Vue({
         },
         healAndHurt() {
             this.heal(10, 15)
-            this.hurt('playerLife', 7, 12, false)
+            this.hurt('playerLife', 7, 12, false,'Monstro', 'Jogador', 'monster')
         },
         heal(min, max) {
             const heal = this.getRadom(min, max)
             this.playerLife = Math.min(this.playerLife + heal, 100)
+            this.registerLogs(`O jogador ganhou força de ${heal}.`,'player')
 
         },
         registerLogs(text, cls) {
